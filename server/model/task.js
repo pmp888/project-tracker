@@ -7,7 +7,7 @@ let schema = mongoose.Schema
 let ObjectId = schema.Types.ObjectId
 
 // Create schema for task
-const db_task = db.model('task', {
+const db_task = db.model('pt_task', {
   task_name:{
     type: String,
     required:true,
