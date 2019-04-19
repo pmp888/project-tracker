@@ -12,26 +12,33 @@
     <title>Create Task</title>
 </head>
 <body>
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
+    <header>
+        <nav>
+            <ul id="menu">
+                <li><a href="home.html"><i class="fas fa-home"></i></a></li>
+                <li><a href="add_task.html">Create Task</a></li>
+                <li><a href="record_time.html">Record Timesheet</a></li>
+                <li><a href="view_task.html">View Task</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container h-90">
+        <div class="row justify-content-center form-content">
             <form class="col-12">
                 <div class="form-group">
-                  <label for="task-name">Enter Task Name:</label>
                   <input type="text" class="form-control" id="task-name" placeholder="Enter Task Name">
                 </div>
                 <div class="form-group">
-                    <label for="task-start-time">Enter Task Start Time:</label>
                     <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                        <input type="text" id="task-start-time" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                        <input type="text" id="task-start-time" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="Enter Task Start Time">
                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="task-end-time">Enter Task End Time:</label>
                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                        <input type="text" id="task-end-time" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+                        <input type="text" id="task-end-time" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="Enter Task Start Time">
                         <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -52,16 +59,37 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group centered">
                     <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
                 </div>
                 <div id="status"></div>
+                <table class="table hidden" id="table-feedback">
+                    <tbody>
+                        <tr>
+                            <th scope="row" style="width:20%">Task Name:</th>
+                            <td id="table-task-name">Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Task Start Time:</th>
+                            <td id="table-task-start-time">Jacob</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Task End Time:</th>
+                            <td id="table-task-end-time">Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Task Status:</th>
+                            <td id="table-task-status">Larry</td>
+                        </tr>
+                    </tbody>
+                </table>
               </form>  
         </div>
     </div>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="lib/tempusdominus-bootstrap-4.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
