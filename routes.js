@@ -1,7 +1,7 @@
-module.exports = function(task){
+module.exports = function(app){
 
 	// ### API ###
 
 	// Tasks
 
-  	task.post('/task', require('./controllers/task_create'))
+  	app.post('/task', require('./controllers/task_create'))
