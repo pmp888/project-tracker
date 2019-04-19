@@ -2,3 +2,8 @@ html,
 body {
   height: 100%
 }
+
+#status {
+  color: red;
+  font-weight: bold;
+}
