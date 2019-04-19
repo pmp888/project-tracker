@@ -2,10 +2,10 @@
   "name": "node",
   "version": "1.0.0",
   "description": "basic node server app",
-  "main": "index.js",
+  "main": "./server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node ./server/index.js"
   },
   "author": "Project-Tracker",
   "license": "ISC",
