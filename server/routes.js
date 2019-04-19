@@ -4,6 +4,6 @@ module.exports = function(app) {
 
 	// Tasks
 
-  	// app.post('/task', require('./server/controllers/task_create'))
+  	app.post('/task', require('./controllers/task_create'))
 
 }
