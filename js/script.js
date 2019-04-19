@@ -21,7 +21,7 @@ $(function () {
             dataType: 'json'
           }).done(function(data) {
               console.log('data', data);
-            $('#status').innerHTML('Task saved!');
+            $('#status').html('Task saved!');
           });
     });
 });
