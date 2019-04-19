@@ -13,18 +13,21 @@ const db_task = db.model('task', {
     required:true,
   },
   time_start:{
-
+    type: Date,
   },
   time_end:{
-
+    type: Date,
   },
 	created: {
 		type: Date,
 		required: true,
 		default: Date.now
-	}
+	},
+  task_status:{
+    type: Boolean,
+  }
 
 })
 
 // Export
-module.exports = db_message
+module.exports = db_task
