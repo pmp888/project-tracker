@@ -10,6 +10,7 @@ const task_status = document.querySelector('input[name="task-status"]');
 const task_start_time_btn = document.querySelector('#task-start-time-btn');
 const task_end_time_btn = document.querySelector('#task-end-time-btn');
 
+
 const axiosConfig = {
     headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -143,7 +144,7 @@ document.addEventListener('click', function(e) {
         task_start_time.value = formatTime();
     }
 
-    if(e.target.matches('#task_end_time_btn')) {
+    if(e.target.matches('#task-end-time-btn')) {
         task_end_time.value = formatTime();
     }
 
