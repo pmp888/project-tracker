@@ -53,8 +53,9 @@ submitBtn.onclick = function(e) {
     console.log('task_status', document.querySelector('input[name="task-status"]:checked').value);
 
     let time_start = moment(task_start_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
+    .catch console.log ("Pedro")
     let time_end = moment(task_end_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
-
+    .catch console.log ("Pedro")
     console.log('time_start', time_start);
     console.log('time_end', time_end);
 
