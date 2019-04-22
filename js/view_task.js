@@ -17,6 +17,8 @@ const axiosConfig = {
     }
 }
 
+let selectedTask = '';
+
 const getTask = () => {
     return axios.get(`${url}/task`, axiosConfig).then(response => response.data);
 }
@@ -26,7 +28,7 @@ const getTaskById = (id) => {
 }
 
 const updateTaskById = (id, data) => {
-    return axios.post(`${url}/task/${id}`, data, axiosConfig).then(response => response.data);
+    return axios.patch(`${url}/task/${id}`, data, axiosConfig).then(response => response.data);
 }
 
 const formatTime = (date) => {
@@ -110,18 +112,20 @@ const createRowElement = (task) => {
 document.addEventListener('click', function(e) {
     if(e.target.matches('.btn-edit')) {
         console.log(e.target.id);
-        
+        selectedTask = e.target.id;
+
         getTaskById(e.target.id).then((task) => {
             task_name.value = task.task_name;
+
             if(task.time_start)
                 task_start_time.value = moment(task.time_start).format(dateFormat);
             else
-                task_start_time.value = 'Not Available';
+                task_start_time.value = '';
             
             if(task.time_end)
                 task_end_time.value = moment(task.time_end).format(dateFormat);
             else
-                task_end_time.value = 'Not Available';
+                task_end_time.value = '';
 
             if(task.task_status) {
                 document.querySelector('#task-status-done').checked = true;
@@ -141,6 +145,32 @@ document.addEventListener('click', function(e) {
 
     if(e.target.matches('#task_end_time_btn')) {
         task_end_time.value = formatTime();
+    }
+
+    if(e.target.matches('.btn-save')) {
+
+        let time_start = '';
+        let time_end = '';
+
+        if (task_start_time.value) {
+            time_start = moment(task_start_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
+        }
+
+        if (task_end_time.value) {
+            time_end = moment(task_end_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
+        }
+  
+        const data = {
+            task_name: task_name.value,
+            time_start,
+            time_end,
+            task_status:  document.querySelector('input[name="task-status"]:checked').value
+        };
+
+        updateTaskById(selectedTask, data).then((data) => {
+            alert('Data Saved');
+            $('#exampleModal').modal('hide');
+        });
     }
 
 });
