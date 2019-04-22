@@ -52,12 +52,23 @@ submitBtn.onclick = function(e) {
     console.log('task_end_time', task_end_time.value);
     console.log('task_status', document.querySelector('input[name="task-status"]:checked').value);
 
-    let time_start = moment(task_start_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
-    .catch console.log ("Pedro")
-    let time_end = moment(task_end_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
-    .catch console.log ("Pedro")
+
+
+    if (!task_start_time.value) {
+      time_start = ""
+    }
+    else {
+      let time_start = moment(task_start_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
+        }
+    if (!task_end_time.value) {
+      time_end = ""
+    }
+    else {
+        let time_end = moment(task_end_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
+    }
     console.log('time_start', time_start);
     console.log('time_end', time_end);
+
 
     const data = {
         task_name: task_name.value,
