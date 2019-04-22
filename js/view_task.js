@@ -74,6 +74,14 @@ const createRowElement = (task) => {
     td.appendChild(text);
     tr.appendChild(td);
 
+    td = document.createElement('td');
+    let button = document.createElement('button');
+    text = document.createTextNode('Edit');
+    button.id = task._id;
+    button.appendChild(text);
+    td.appendChild(button);
+    tr.appendChild(td);
+
     return tr;
 }
 
