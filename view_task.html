@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="lib/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Create Task</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul id="menu">
+                <li><a href="home.html"><i class="fas fa-home"></i></a></li>
+                <li><a href="add_task.html">Create Task</a></li>
+                <li><a href="record_time.html">Record Timesheet</a></li>
+                <li><a href="view_task.html">View Task</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container h-90">
+        <div class="row justify-content-center form-content">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Task Start Time</th>
+                            <th>Task End Time</th>
+                            <th>Task Duration</th>
+                            <th>Task Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="lib/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="js/view_task.js"></script>
+</body>
+</html>
