@@ -2,6 +2,13 @@ const url = 'http://localhost:3000';
 const dateFormat = 'DD-MM-YYYY HH:mm';
 
 const table_body = document.querySelector('#table-body');
+const task_name = document.querySelector('#task-name');
+const task_start_time = document.querySelector('#task-start-time');
+const task_end_time = document.querySelector('#task-end-time');
+const task_status = document.querySelector('input[name="task-status"]');
+
+const task_start_time_btn = document.querySelector('#task-start-time-btn');
+const task_end_time_btn = document.querySelector('#task-end-time-btn');
 
 const axiosConfig = {
     headers: {
@@ -12,6 +19,18 @@ const axiosConfig = {
 
 const getTask = () => {
     return axios.get(`${url}/task`, axiosConfig).then(response => response.data);
+}
+
+const getTaskById = (id) => {
+    return axios.get(`${url}/task/${id}`, axiosConfig).then(response => response.data);
+}
+
+const updateTaskById = (id, data) => {
+    return axios.post(`${url}/task/${id}`, data, axiosConfig).then(response => response.data);
+}
+
+const formatTime = (date) => {
+    return moment(date).format(dateFormat);
 }
 
 const createRowElement = (task) => {
@@ -78,12 +97,53 @@ const createRowElement = (task) => {
     let button = document.createElement('button');
     text = document.createTextNode('Edit');
     button.id = task._id;
+    button.classList.add('btn-edit');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#myModal');
     button.appendChild(text);
     td.appendChild(button);
     tr.appendChild(td);
 
     return tr;
 }
+
+document.addEventListener('click', function(e) {
+    if(e.target.matches('.btn-edit')) {
+        console.log(e.target.id);
+        
+        getTaskById(e.target.id).then((task) => {
+            task_name.value = task.task_name;
+            if(task.time_start)
+                task_start_time.value = moment(task.time_start).format(dateFormat);
+            else
+                task_start_time.value = 'Not Available';
+            
+            if(task.time_end)
+                task_end_time.value = moment(task.time_end).format(dateFormat);
+            else
+                task_end_time.value = 'Not Available';
+
+            if(task.task_status) {
+                document.querySelector('#task-status-done').checked = true;
+                document.querySelector('#task-status-not-done').checked = false;
+            } else {
+                document.querySelector('#task-status-done').checked = false;
+                document.querySelector('#task-status-not-done').checked = true;
+            }
+
+            $('#exampleModal').modal();
+        });
+    }
+
+    if(e.target.matches('#task-start-time-btn')) {
+        task_start_time.value = formatTime();
+    }
+
+    if(e.target.matches('#task_end_time_btn')) {
+        task_end_time.value = formatTime();
+    }
+
+});
 
 getTask().then((tasks) => {
 
@@ -93,3 +153,11 @@ getTask().then((tasks) => {
     });
 
 });
+
+$('#datetimepicker1').datetimepicker({
+    format: dateFormat
+});
+$('#datetimepicker2').datetimepicker({
+    format: dateFormat
+});
+
