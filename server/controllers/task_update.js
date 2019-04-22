@@ -2,7 +2,7 @@
 const task = require('../model/task')
 
 module.exports = function(req, res, next) {
-	message.findByIdAndUpdate(req.params.id,
+	task.findByIdAndUpdate(req.params.id,
 		req.body,
 		{
 			task_name:{
