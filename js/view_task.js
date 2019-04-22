@@ -169,8 +169,9 @@ document.addEventListener('click', function(e) {
         };
 
         updateTaskById(selectedTask, data).then((data) => {
-            alert('Data Saved');
+            alert('Task is saved');
             $('#exampleModal').modal('hide');
+            document.location.reload(true);
         });
     }
 
