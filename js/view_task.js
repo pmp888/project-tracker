@@ -9,6 +9,7 @@ const task_status = document.querySelector('input[name="task-status"]');
 
 const task_start_time_btn = document.querySelector('#task-start-time-btn');
 const task_end_time_btn = document.querySelector('#task-end-time-btn');
+const status = document.querySelector('#status');
 
 
 const axiosConfig = {
@@ -121,6 +122,20 @@ const render_page = (allTasks) => {
     });
 }
 
+const isError = (name, start_time, end_time) => {
+    if(!name) {
+        status.innerHTML = 'Error - Task Name is required!';
+        return true;
+    }
+
+   if(!start_time && end_time) {
+        status.innerHTML = 'Error - Task Start Time is required if you entered Task End Time!';
+       return true;
+   }
+
+   return false;
+}
+
 document.addEventListener('click', function(e) {
     if(e.target.matches('.btn-edit')) {
         console.log(e.target.id);
@@ -172,6 +187,10 @@ document.addEventListener('click', function(e) {
             time_end = moment(task_end_time.value, dateFormat).format('MM/DD/YYYY HH:mm');
         }
   
+        if(isError(task_name.value, task_start_time.value, task_end_time.value)) {
+            return false;
+        }
+
         const data = {
             task_name: task_name.value,
             time_start,
