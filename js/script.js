@@ -24,7 +24,7 @@ const axiosConfig = {
 }
 
 const postTask = (data) => {
-    return axios.post(`${url}/task`, data, axiosConfig).then(response => response.data);
+    return axios.post(`${url}/task`, data, axiosConfig).then(response => response.data).catch(error => error);
 }
 
 const formatTime = (date) => {
@@ -93,6 +93,7 @@ let time_end = ""
         clearAll();
     }).catch((error) => {
         console.log(error);
+        status.innerHTML = `Error - ${error}`;
     })
 }
 
