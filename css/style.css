@@ -57,13 +57,11 @@ div #carousel span{
   color:black;
 }
 
-/* .carousel span {
-  background-color: black
+.carousel-control-prev,
+.carousel-control-next {
+  top: 100px;
 }
 
-.carousel a span.carousel-control-next-icon {
-  background-color: red
-} */
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
