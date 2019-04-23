@@ -19,6 +19,13 @@ app.use(cors())
 
 require('./routes.js')(app)
 
+app.use(function(err, req, res, next) {
+    console.log('Error', err);
+    res.status(200).json({
+        message: err.message
+    });
+});
+
 // using port 3000
 
 app.listen(process.env.PORT || 3000, function() {

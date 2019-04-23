@@ -24,7 +24,12 @@ const axiosConfig = {
 }
 
 const postTask = (data) => {
-    return axios.post(`${url}/task`, data, axiosConfig).then(response => response.data).catch(error => error);
+    return axios.post(`${url}/task`, data, axiosConfig)
+        .then(response => response.data)
+        .catch(error => {
+            console.log(error);
+            return error;
+        });
 }
 
 const formatTime = (date) => {
@@ -84,15 +89,22 @@ let time_end = ""
 
     postTask(data).then((response) => {
         console.log(response);
-        status.innerHTML = 'Task created!';
-        table_task_name.innerHTML = response.task_name;
-        table_task_start_time.innerHTML = response.time_start ? formatTime(response.time_start) : 'Not Available';
-        table_task_end_time.innerHTML = response.time_end ? formatTime(response.time_end) : 'Not Available';
-        table_task_status.innerHTML = response.task_status == 0 ? 'Not Done' : 'Done';
-        table_feedback.classList.remove('hidden');
-        clearAll();
+        if(response.message) {
+            console.log('Error ',response.message);
+            status.innerHTML = `Error - ${response.message}`;
+        } else {
+            status.innerHTML = 'Task created!';
+            table_task_name.innerHTML = response.task_name;
+            table_task_start_time.innerHTML = response.time_start ? formatTime(response.time_start) : 'Not Available';
+            table_task_end_time.innerHTML = response.time_end ? formatTime(response.time_end) : 'Not Available';
+            table_task_status.innerHTML = response.task_status == 0 ? 'Not Done' : 'Done';
+            table_feedback.classList.remove('hidden');
+            clearAll();
+        }
+
+        
     }).catch((error) => {
-        console.log(error);
+        console.log('Errorss ',error);
         status.innerHTML = `Error - ${error}`;
     })
 }
