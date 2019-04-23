@@ -21,8 +21,8 @@ require('./routes.js')(app)
 
 app.use(function(err, req, res, next) {
     console.log('Error', err);
-    res.status(200).json({
-        message: err.message
+    res.status(400).json({
+        error_message: err.message
     });
 });
 

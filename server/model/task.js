@@ -11,11 +11,13 @@ let ObjectId = schema.Types.ObjectId
 const db_task = db.model('pt_task', {
   task_name:{
     type: String,
-    required: [true, 'no_name']
+    required: [true, 'Task Name is required!']
   },
   time_start:{
     type: Date,
-    required: [true, 'Needs Time Start']
+    required: [function() {
+      return this.time_end;
+    }, 'Task Start Time is required if you entered Task End Time!']
   }
   ,
   time_end:{
