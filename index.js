@@ -17,10 +17,11 @@ app.use(cors())
 
 
 
-require('./routes.js')(app)
-require('./routes_client.js')(app)
+require('./server/routes.js')(app)
+require('./server/routes_client.js')(app)
 
-app.use(express.static(__dirname + '../client/'));
+app.use(express.static(__dirname + '/client'));
+console.log('st', __dirname + '/client');
 
 app.use(function(err, req, res, next) {
     console.log('Error', err);
