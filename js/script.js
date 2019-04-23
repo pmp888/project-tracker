@@ -24,7 +24,7 @@ const axiosConfig = {
 }
 
 const postTask = (data) => {
-    return axios.post(`${url}/task`, data, axiosConfig).then(response => response.data);
+    return axios.post(`${url}/task`, data, axiosConfig).then(response => response.data).catch(error => error);
 }
 
 const formatTime = (date) => {
@@ -91,6 +91,9 @@ let time_end = ""
         table_task_status.innerHTML = response.task_status == 0 ? 'Not Done' : 'Done';
         table_feedback.classList.remove('hidden');
         clearAll();
+    }).catch((error) => {
+        console.log(error);
+        status.innerHTML = `Error - ${error}`;
     })
 }
 
