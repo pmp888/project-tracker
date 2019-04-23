@@ -1,8 +1,12 @@
+require('dotenv').config();
+
 const express = require('express')
 const body_parser = require('body-parser')
 const cors = require('cors')
 
+
 const app = express()
+
 
 // middleware
 
@@ -32,6 +36,6 @@ app.use(function(err, req, res, next) {
 
 // using port 3000
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT, function() {
 	console.log('Server ready on port 3000 or default');
 })
