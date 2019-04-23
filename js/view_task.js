@@ -18,7 +18,9 @@ const axiosConfig = {
     }
 }
 
+let tasks = [];
 let selectedTask = '';
+let sortOrder = false;
 
 const getTask = () => {
     return axios.get(`${url}/task`, axiosConfig).then(response => response.data);
@@ -110,6 +112,15 @@ const createRowElement = (task) => {
     return tr;
 }
 
+const render_page = (allTasks) => {
+    table_body.innerHTML = '';
+
+    allTasks.forEach((task) => {
+        const tr = createRowElement(task);
+        table_body.appendChild(tr);
+    });
+}
+
 document.addEventListener('click', function(e) {
     if(e.target.matches('.btn-edit')) {
         console.log(e.target.id);
@@ -175,15 +186,55 @@ document.addEventListener('click', function(e) {
         });
     }
 
+    if(e.target.matches('a.table-header')) {
+        sortOrder = !sortOrder;
+
+        console.log('id', e.target.id);
+        console.log('tasks', tasks);
+
+        let new_tasks = tasks.sort(function(a, b) {
+            let element1 = a[e.target.id];
+            let element2 = b[e.target.id];
+            console.log(element1, ':', element2);
+            if(sortOrder) {
+                if(e.target.id == 'time_start' || e.target.id == 'time_end') {
+                    let date1 = new Date(element1);
+                    let date2 = new Date(element2);
+                    return date1 - date2;
+                } else {
+                    if(element1 > element2)
+                        return 1;
+                    else
+                        return -1;
+                }
+            } else {
+                if(e.target.id == 'time_start' || e.target.id == 'time_end') {
+                    let date1 = new Date(element1);
+                    let date2 = new Date(element2);
+                    return date2 - date1;
+                } else {
+                    if(element1 > element2)
+                        return -1;
+                    else
+                        return 1;
+                }
+            }
+        });
+
+        tasks = new_tasks;
+
+        console.log('sorted tasks', new_tasks);
+        render_page(new_tasks);
+    }
+
 });
 
-getTask().then((tasks) => {
+getTask().then((tasks_returned) => {
 
-    tasks.forEach((task) => {
-        const tr = createRowElement(task);
-        table_body.appendChild(tr);
-    });
+    if(tasks.length == 0)
+        tasks = tasks_returned;
 
+    render_page(tasks);
 });
 
 $('#datetimepicker1').datetimepicker({
