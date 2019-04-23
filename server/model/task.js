@@ -7,15 +7,17 @@ let schema = mongoose.Schema
 let ObjectId = schema.Types.ObjectId
 
 // Create schema for task
-// pt_task -> singular here, pl in database 
+// pt_task -> singular here, pl in database
 const db_task = db.model('pt_task', {
   task_name:{
     type: String,
-    required:true,
+    required: [true, 'no_name']
   },
   time_start:{
     type: Date,
-  },
+    required: [true, 'Needs Time Start']
+  }
+  ,
   time_end:{
     type: Date,
   },
