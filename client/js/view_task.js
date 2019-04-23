@@ -1,4 +1,3 @@
-const url = 'http://localhost:3000';
 const dateFormat = 'DD-MM-YYYY HH:mm';
 
 const table_body = document.querySelector('#table-body');
@@ -24,15 +23,15 @@ let selectedTask = '';
 let sortOrder = false;
 
 const getTask = () => {
-    return axios.get(`${url}/task`, axiosConfig).then(response => response.data);
+    return axios.get('/task', axiosConfig).then(response => response.data);
 }
 
 const getTaskById = (id) => {
-    return axios.get(`${url}/task/${id}`, axiosConfig).then(response => response.data);
+    return axios.get(`/task/${id}`, axiosConfig).then(response => response.data);
 }
 
 const updateTaskById = (id, data) => {
-    return axios.patch(`${url}/task/${id}`, data, axiosConfig).then(response => response.data);
+    return axios.patch(`/task/${id}`, data, axiosConfig).then(response => response.data);
 }
 
 const formatTime = (date) => {

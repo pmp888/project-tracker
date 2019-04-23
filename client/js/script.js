@@ -1,4 +1,3 @@
-const url = 'http://localhost:3000';
 const dateFormat = 'DD-MM-YYYY HH:mm';
 
 const task_name = document.querySelector('#task-name');
@@ -24,7 +23,7 @@ const axiosConfig = {
 }
 
 const postTask = (data) => {
-    return axios.post(`${url}/task`, data, axiosConfig)
+    return axios.post('/task', data, axiosConfig)
         .then(response => response.data);
 }
 
