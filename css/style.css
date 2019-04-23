@@ -33,6 +33,11 @@ div.centered {
   text-align: center;
 }
 
+#hourglass {
+  height: 50px;
+}
+
+
 .form-group {
   margin-bottom: 2rem;
 }
@@ -45,4 +50,8 @@ div.centered {
 
 .hidden {
   display: none;
+}
+/* carousel  */
+.carousel-control-next{
+  color:black; 
 }
